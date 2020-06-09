@@ -1,5 +1,7 @@
+drop table happiness_table;
+
 create table happiness_table(
-	country varchar(256),
+	country varchar(256) primary key,
 	ranking int,
 	score float,
 	social_support float,
