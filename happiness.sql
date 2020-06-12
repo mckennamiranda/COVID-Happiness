@@ -1,4 +1,5 @@
 drop table happiness_table;
+drop table countrycode_table;
 
 create table happiness_table(
 	country varchar(256) primary key,
@@ -10,10 +11,12 @@ create table happiness_table(
 );
 
 create table countrycode_table(
-	country_code int not null primary key,
+	iso_a3 varchar not null primary key,
+	iso_a2 varchar,
 	country varchar,
 	continent varchar,
 	subregion varchar,
+	country_code int,
 	continent_code int,
 	subregion_code int
 );
@@ -26,6 +29,14 @@ create table covid_cases (
 	TotalTests float
 );
 
+create table capital_table (
+	country varchar not null primary key,
+	capital varchar,
+	lat float,
+	lng float,
+	iso_a2 varchar
+	)
+	
 select * from covid_cases;
 
 select * from happiness_table;
