@@ -1,0 +1,22 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\fs24 \cf0 ETL Project\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 JungJe Son and McKenna Miranda\
+World Happiness Report and Country COVID-19 Data\
+\
+\
+Our data was used from three different sources: the Worldometer COVID-19 database, The 2019 World Happiness Report, and the OurWorldInData COVID-19 data.  We had originally found the Worldometer and Happiness Report data from Kaggle.  Though after working with the worldometer data and attempting to merge it with the Happiness data, we ran into value differences and had to find more appropriate as well as more recent COVID-19 data. We retrieved all of our files as CSV files. The complete COVID-19 files were organized by date, beginning in December of 2019 (when the first global case of COVID-19 was recorded).  Because of this, there were roughly twenty-three thousand rows of data.  Luckily, the Total Cases per country were recorded daily as a consecutive sum so we took from the absolute latest date (June 14\super th\nosupersub ,2020).  \
+\
+We initialized our tables in pgAdmin and completed them using the engine through pandas and SQL queries on Jupyter Notebook.  Cleaning our data was tedious as mentioned before due to the conflicting country name values in each data-frame.  We found a country code data frame which consisted of known aliases of countries so we could combine the data and use a singular country code to merge the data-frames without error. Once we had finally had a consistent value for our countries, we were able to load the countries through gmaps\'92 GeoJSON so we could visualize the rankings on a world map.  Our completed analysis used pandas, sqlalchemy, matplotlib, and gmaps. \
+\
+Our final database consisted of our initial columns from both the COVID-19 data and World Happiness report as well as a ranking we created ourselves.  The Happiness data consisted of a ranking: 1-142 countries ranked by how happy they were found. We wanted to emulate this ranking with our COVID-19 data.  We did this by calculating the rank of each country by its \'93Total Cases Per Million\'94.  We found this to be a representative sample of COVID-19\'92s effect on the country.  By doing this we were able to create a rank of each country\'92s COVID-19 effect on a scale of 0-10; 0 being the least amount of cases per million, 10 being the most amount of cases per million.  \
+\
+To load our database we used SQL on pgAdmin to load our final csv into our complete table. \
+}
