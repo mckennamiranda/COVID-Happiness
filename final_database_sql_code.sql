@@ -1,3 +1,5 @@
+﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
 
 CREATE TABLE "happiness_table" (
@@ -9,17 +11,6 @@ CREATE TABLE "happiness_table" (
     "corruption_index" float   NOT NULL,
     CONSTRAINT "pk_happiness_table" PRIMARY KEY (
         "country"
-     )
-);
-
-CREATE TABLE "covid_cases" (
-    "country_region" varchar   NOT NULL,
-    "population" float   NOT NULL,
-    "totalcases" float   NOT NULL,
-    "totaldeaths" float   NOT NULL,
-    "totaltests" float   NOT NULL,
-    CONSTRAINT "pk_covid_cases" PRIMARY KEY (
-        "country_region"
      )
 );
 
@@ -79,15 +70,12 @@ REFERENCES "countrycode_table" ("country");
 ALTER TABLE "happiness_table" ADD CONSTRAINT "fk_happiness_table_ranking_score" FOREIGN KEY("ranking", "score")
 REFERENCES "merged_covid_happiness_table" ("happiness_ranking", "happiness_score");
 
-ALTER TABLE "covid_cases" ADD CONSTRAINT "fk_covid_cases_country_region" FOREIGN KEY("country_region")
-REFERENCES "countrycode_table" ("country");
-
-ALTER TABLE "countrycode_table" ADD CONSTRAINT "fk_countrycode_table_iso_a2" FOREIGN KEY("iso_a2")
+ALTER TABLE "countrycode_table" ADD CONSTRAINT "fk_countrycode_table_iso_a3" FOREIGN KEY("iso_a3")
 REFERENCES "covid_countrycode_table" ("iso_code");
 
 ALTER TABLE "countrycode_table" ADD CONSTRAINT "fk_countrycode_table_country" FOREIGN KEY("country")
 REFERENCES "capital_table" ("country");
 
-ALTER TABLE "merged_covid_happiness_table" ADD CONSTRAINT "fk_merged_covid_happiness_table_country" FOREIGN KEY("country")
-REFERENCES "covid_cases" ("country_region");
+ALTER TABLE "merged_covid_happiness_table" ADD CONSTRAINT "fk_merged_covid_happiness_table_country_code" FOREIGN KEY("country_code")
+REFERENCES "covid_countrycode_table" ("iso_code");
 
